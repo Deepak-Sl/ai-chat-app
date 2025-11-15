@@ -22,7 +22,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className="px-3 py-1 bg-gray-300 dark:bg-gray-700 rounded hover:bg-gray-400 dark:hover:bg-gray-600"
     >
-      {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+      {theme === "light" ? "Dark" : "Light"}
     </button>
   );
 }
