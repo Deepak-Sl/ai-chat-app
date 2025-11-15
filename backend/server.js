@@ -76,6 +76,6 @@ app.post('/api/chat/:id', (req, res) => {
   res.json({ ok: true, response });
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Backend running at http://localhost:${port}`);
 });
