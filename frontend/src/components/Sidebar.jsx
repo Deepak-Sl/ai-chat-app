@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 
+
+
 export default function Sidebar({ selectedSession, onSelect }) {
+  const BASE_URL = "https://ai-chat-backend-tcel.onrender.com/api"
   const [sessions, setSessions] = useState([]);
 
   const fetchSessions = () => {
-    fetch("http://localhost:4000/api/sessions")
+    fetch(`${BASE_URL}/sessions`)
       .then((res) => res.json())
       .then((data) => setSessions(data.sessions));
   };
@@ -14,7 +17,7 @@ export default function Sidebar({ selectedSession, onSelect }) {
   }, []);
 
   const handleNewChat = () => {
-    fetch("http://localhost:4000/api/new-chat")
+    fetch(`${BASE_URL}/new-chat`)
       .then((res) => res.json())
       .then((data) => {
         fetchSessions();

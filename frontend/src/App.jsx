@@ -6,6 +6,7 @@ import TableResponse from "./components/TableResponse";
 import AnswerFeedback from "./components/AnswerFeedback";
 
 export default function App() {
+  const BASE_URL = "https://ai-chat-backend-tcel.onrender.com/api"
   const [selectedSession, setSelectedSession] = useState(null);
   const [messages, setMessages] = useState([]);
   const chatEndRef = useRef(null);
@@ -18,7 +19,7 @@ export default function App() {
   // Fetch session history when session changes
   useEffect(() => {
     if (!selectedSession) return;
-    fetch(`http://localhost:4000/api/session/${selectedSession}`)
+    fetch(`${BASE_URL}/session/${selectedSession}`)
       .then((res) => res.json())
       .then((data) => setMessages(data.session.messages || []));
   }, [selectedSession]);
@@ -31,7 +32,7 @@ export default function App() {
     setMessages((prev) => [...prev, userMessage]);
 
     // Send to backend
-    fetch(`http://localhost:4000/api/chat/${selectedSession}`, {
+    fetch(`${BASE_URL}/chat/${selectedSession}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: text }),
